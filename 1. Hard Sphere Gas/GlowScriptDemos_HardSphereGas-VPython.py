@@ -53,17 +53,18 @@ vert2.append([vector(-d,-d,d), vector(-d,d,d)])
 vert3.append([vector(d,-d,d), vector(d,d,d)])
 vert4.append([vector(d,-d,-d), vector(d,d,-d)])
 
-
+# INICIALITZACIÓ DEL PROCÉS-------------------------------------------
 Atoms = [] #llista d'atoms
 p = [] #llista de moments lineals
 apos = [] #llista de posicions
 pavg = sqrt(2*mass*1.5*k*T) # average kinetic energy p**2/(2mass) = (3/2)kT
-    
+
+#per cada atom, li assignem posicions randoms (que no surtin de la caixa) i moments randoms (que segueixin Ta equipartició)
 for i in range(Natoms):
     x = L*random()-L/2
     y = L*random()-L/2
     z = L*random()-L/2
-    if i == 0:
+    if i == 0: #fas que a l'àtom nº 1 li segueixi una traça per on passa
         Atoms.append(sphere(pos=vector(x,y,z), radius=Ratom, color=color.cyan, make_trail=True, retain=100, trail_radius=0.3*Ratom))
     else: Atoms.append(sphere(pos=vector(x,y,z), radius=Ratom, color=gray))
     apos.append(vec(x,y,z))
@@ -74,6 +75,9 @@ for i in range(Natoms):
     pz = pavg*cos(theta)
     p.append(vector(px,py,pz))
 
+
+
+# CREACIÓ DE L'HISTOGRAMA DE VELOCITATS (CAL QUE SEGUEIXI UNA GAUSSIANA, TAL COM ASSIGNEM EL MOMENT)-----------------------------------------------------
 deltav = 100 # binning for v histogram
 
 def barx(v):
@@ -90,7 +94,7 @@ gg = graph( width=win, height=0.4*win, xmax=3000, align='left',
 theory = gcurve( color=color.blue, width=2 )
 dv = 10
 for v in range(0,3001+dv,dv):  # theoretical prediction
-    theory.plot( v, (deltav/dv)*Natoms*4*pi*((mass/(2*pi*k*T))**1.5) *exp(-0.5*mass*(v**2)/(k*T))*(v**2)*dv )
+    theory.plot( v, (deltav/dv)*Natoms*4*pi*((mass/(2*pi*k*T))**1.5) *exp(-0.5*mass*(v**2)/(k*T))*(v**2)*dv ) #GAUSSIANA TEÒRICA (MB)
 
 accum = []
 for i in range(int(3000/deltav)): accum.append([deltav*(i+.5),0])
@@ -103,7 +107,8 @@ def interchange(v1, v2):  # remove from v1 bar, add to v2 bar
     if barx1 >= len(histo) or barx2 >= len(histo): return
     histo[barx1] -= 1
     histo[barx2] += 1
-    
+
+
 def checkCollisions():
     hitlist = []
     r2 = 2*Ratom
