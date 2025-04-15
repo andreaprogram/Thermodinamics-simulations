@@ -19,9 +19,11 @@ k = 1.4E-23 # Boltzmann constant [J/K]
 T = 300 # around room temperature [K]
 dt = 1E-5
 cross_sec= 0.21E-9
+n = Natoms / (L**3)  # densitat numèrica
+v_avg = np.sqrt(8 * k * T / (np.pi * mass))  # velocitat mitjana
 
-Z= (2**(1/2))*(cross_sec**2)*(Natoms**2)*(8*k*T/(np.pi*mass))**(1/2)/(2*(L**6))
-temps_teo=1/Z
+Z = np.sqrt(2) * np.pi * (cross_sec**2) * n * v_avg  # freqüència de col·lisions
+temps_teo = 1 / Z
 print("Temps teòric mig entre col·lisions", temps_teo)
 
 # AJUSTOS VISUALITZACIÓ----------------------------------------------------------
