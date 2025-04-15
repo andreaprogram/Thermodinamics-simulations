@@ -126,9 +126,14 @@ def checkCollisions():
 # EXECUCIÓ DE L'ALGORISME: una vegada establertes les CI, si dos particules xoquen s'els assigna un nou moment --------------------------------------
 nhisto = 0 # number of histogram snapshots to average
 
+colisions = 0
+temps_total = 0
+
 while True:
     rate(300)
+  
     # Accumulate and average histogram snapshots
+    temps_total += dt #contar el temps
     for i in range(len(accum)): accum[i][1] = (nhisto*accum[i][1] + histo[i])/(nhisto+1)
     if nhisto % 10 == 0:
         vdist.data = accum
@@ -178,6 +183,12 @@ while True:
         apos[j] = posj+(p[j]/mass)*deltat
         interchange(vi.mag, p[i].mag/mass)
         interchange(vj.mag, p[j].mag/mass)
+
+        colisions += 1
+        if colisions % 1000 == 0:    #cada 1000 colisions mirem el temps mig
+            print("Nombre de colisions:", colisions)
+            print("Temps total:", temps_total)
+            print("Tiemps mig entre colisions:", temps_total / colisions)
     
     for i in range(Natoms):
         loc = apos[i]
