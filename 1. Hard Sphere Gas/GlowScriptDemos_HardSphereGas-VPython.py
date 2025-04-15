@@ -22,7 +22,7 @@ cross_sec= 0.21E-9
 n = Natoms / (L**3)  # densitat numèrica
 v_avg = np.sqrt(8 * k * T / (np.pi * mass))  # velocitat mitjana
 
-Z = (np.sqrt(2) * np.pi * (cross_sec**2) * (n**2) * v_avg) /2 # freqüència de col·lisions
+Z = (np.sqrt(2)*cross_sec*(n**2)*v_avg)/2 # freqüència de col·lisions
 temps_teo = 1 / Z
 print("Temps teòric mig entre col·lisions", temps_teo)
 
