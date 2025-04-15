@@ -59,7 +59,7 @@ p = [] #llista de moments lineals
 apos = [] #llista de posicions
 pavg = sqrt(2*mass*1.5*k*T) # average kinetic energy p**2/(2mass) = (3/2)kT
 
-#per cada atom, li assignem posicions randoms (que no surtin de la caixa) i moments randoms (que segueixin Ta equipartició)
+#per cada atom, li assignem posicions inicials randoms (que no surtin de la caixa) i moments inicials randoms (que segueixin Ta equipartició)
 for i in range(Natoms):
     x = L*random()-L/2
     y = L*random()-L/2
@@ -77,7 +77,7 @@ for i in range(Natoms):
 
 
 
-# CREACIÓ DE L'HISTOGRAMA DE VELOCITATS (CAL QUE SEGUEIXI UNA GAUSSIANA, TAL COM ASSIGNEM EL MOMENT)-----------------------------------------------------
+# DEFINICIÓ DE L'HISTOGRAMA DE VELOCITATS (CAL QUE SEGUEIXI UNA GAUSSIANA, TAL COM ASSIGNEM EL MOMENT)-----------------------------------------------------
 deltav = 100 # binning for v histogram
 
 def barx(v):
@@ -109,18 +109,21 @@ def interchange(v1, v2):  # remove from v1 bar, add to v2 bar
     histo[barx2] += 1
 
 
+#RECOMPTE DE COL·LISIONS----------------------------------------------------------------------------------------------------------------------------
 def checkCollisions():
     hitlist = []
-    r2 = 2*Ratom
-    r2 *= r2
-    for i in range(Natoms):
+    r2 = 2*Ratom  #distancia mínima entre 2 àtoms
+    r2 *= r2      #quadrat d'aquesta distància
+    for i in range(Natoms):  #compara cada parell d'àtoms, fixant l'atom 'i' i comparant-lo amb els 'j' altres
         ai = apos[i]
         for j in range(i) :
             aj = apos[j]
-            dr = ai - aj
-            if mag2(dr) < r2: hitlist.append([i,j])
+            dr = ai - aj #distancia entre l'atom 'i' i 'j'
+            if mag2(dr) < r2: hitlist.append([i,j]) #si la distancia es menor a la distancia minima, es una col·lisio
     return hitlist
 
+
+# EXECUCIÓ DE L'ALGORISME: una vegada establertes les CI, si dos particules xoquen s'els assigna un nou moment --------------------------------------
 nhisto = 0 # number of histogram snapshots to average
 
 while True:
