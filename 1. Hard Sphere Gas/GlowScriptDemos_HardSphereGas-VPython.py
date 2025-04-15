@@ -6,19 +6,21 @@ from vpython import *
 
 # Bruce Sherwood
 
-win = 500
+win = 500 # tamny de la finestra on s'executa el programa
 
-Natoms = 400  # change this to have more or fewer atoms
+Natoms = 500  # fixem N=500
 
-# Typical values
+# CONDICIONS TERMODINAMIQUES DEL SISTEMA-----------------------------
 L = 1 # container is a cube L on a side
 gray = color.gray(0.7) # color of edges of container
-mass = 4E-3/6E23 # helium mass
+mass = 4E-3/6E23 # helium mass (massa molar)
 Ratom = 0.03 # wildly exaggerated size of helium atom
-k = 1.4E-23 # Boltzmann constant
-T = 300 # around room temperature
+k = 1.4E-23 # Boltzmann constant [J/K]
+T = 300 # around room temperature [K]
 dt = 1E-5
 
+
+# AJUSTOS VISUALITZACIÓ----------------------------------------------------------
 animation = canvas( width=win, height=win, align='left')
 animation.range = L
 animation.title = 'A "hard-sphere" gas'
@@ -29,6 +31,12 @@ s = """  Theoretical and averaged speed distributions (meters/sec).
   
 """
 animation.caption = s
+
+# Dibuix del cub on se situa el sistema 
+#12 aristas del cub:
+#4 del fons (boxbottom)
+#4 del sostre (boxtop)
+# 4 verticals (las vert)
 
 d = L/2+Ratom
 r = 0.005
@@ -45,9 +53,10 @@ vert2.append([vector(-d,-d,d), vector(-d,d,d)])
 vert3.append([vector(d,-d,d), vector(d,d,d)])
 vert4.append([vector(d,-d,-d), vector(d,d,-d)])
 
-Atoms = []
-p = []
-apos = []
+
+Atoms = [] #llista d'atoms
+p = [] #llista de moments lineals
+apos = [] #llista de posicions
 pavg = sqrt(2*mass*1.5*k*T) # average kinetic energy p**2/(2mass) = (3/2)kT
     
 for i in range(Natoms):
