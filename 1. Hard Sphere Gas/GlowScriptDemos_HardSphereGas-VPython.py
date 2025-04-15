@@ -1,7 +1,7 @@
 
 from vpython import *
 #Web VPython 3.2
-
+import numpy as np
 # Hard-sphere gas.
 
 # Bruce Sherwood
@@ -18,7 +18,11 @@ Ratom = 0.03 # wildly exaggerated size of helium atom
 k = 1.4E-23 # Boltzmann constant [J/K]
 T = 300 # around room temperature [K]
 dt = 1E-5
+cross_sec= 0.21E-9
 
+Z= (2**(1/2))*(cross_sec**2)*(Natoms**2)*(8*k*T/(np.pi*mass))**(1/2)/(2*(L**6))
+temps_teo=1/Z
+print("Temps teòric mig entre col·lisions", temps_teo)
 
 # AJUSTOS VISUALITZACIÓ----------------------------------------------------------
 animation = canvas( width=win, height=win, align='left')
