@@ -185,7 +185,7 @@ while True:
         interchange(vj.mag, p[j].mag/mass)
 
         colisions += 1
-        if colisions % 1000 == 0:    #cada 1000 colisions mirem el temps mig
+        if colisions % 10000 == 0:    #cada 10000 colisions mirem el temps mig
             print("Nombre de colisions:", colisions)
             print("Temps total:", temps_total)
             print("Tiemps mig entre colisions:", temps_total / colisions)
