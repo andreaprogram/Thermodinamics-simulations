@@ -8,7 +8,7 @@ from vpython import *
 
 win = 500
 
-Natoms = 500  # change this to have more or fewer atoms
+Natoms = 400  # change this to have more or fewer atoms
 
 # Typical values
 L = 1 # container is a cube L on a side
