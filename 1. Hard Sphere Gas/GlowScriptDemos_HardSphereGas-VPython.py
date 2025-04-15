@@ -181,9 +181,9 @@ while True:
     
     for i in range(Natoms):
         loc = apos[i]
-        if abs(loc.x) > L/2:
-            if loc.x < 0: p[i].x =  abs(p[i].x)
-            else: p[i].x =  -abs(p[i].x)
+        if abs(loc.x) > L/2: #considerem quan una particula 'sobrepassa' la paret
+            if loc.x < 0: p[i].x =  abs(p[i].x) #si loc<0 estarà a la paret esquerra, aleshores cal que p>0
+            else: p[i].x =  -abs(p[i].x)  # si loc>0 estara a la paret dreta, aleshores cla que p<0
         
         if abs(loc.y) > L/2:
             if loc.y < 0: p[i].y = abs(p[i].y)
