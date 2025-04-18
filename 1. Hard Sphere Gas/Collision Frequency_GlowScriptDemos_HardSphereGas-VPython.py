@@ -196,6 +196,9 @@ while True:
             print("Temps total:", temps_total)
             print("Tiemps mig entre colisions:", temps_total / colisions)
             print("Freqüència colisions:", colisions / temps_total)
+            temps_total=0
+            colisions=0
+      
     
     for i in range(Natoms):
         loc = apos[i]
