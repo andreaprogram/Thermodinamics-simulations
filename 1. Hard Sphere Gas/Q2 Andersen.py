@@ -132,6 +132,8 @@ def checkCollisions():
 # EXECUCIÓ DE L'ALGORISME: una vegada establertes les CI, si dos particules xoquen s'els assigna un nou moment --------------------------------------
 nhisto = 0 # number of histogram snapshots to average
 
+delta_p_total=0.0
+t_total = 0.0
 
 while True:
     rate(300)
@@ -202,14 +204,27 @@ while True:
     for i in range(Natoms):
         loc = apos[i]
         if abs(loc.x) > L/2: #considerem quan una particula 'sobrepassa' la paret
+          delta_p = 2 * abs(p[i].x)
+          delta_p_total+= delta_p
             if loc.x < 0: p[i].x =  abs(p[i].x) #si loc<0 estarà a la paret esquerra, aleshores cal que p>0
             else: p[i].x =  -abs(p[i].x)  # si loc>0 estara a la paret dreta, aleshores cla que p<0
         
         if abs(loc.y) > L/2:
+          delta_p = 2 * abs(p[i].x)
+          delta_p_total+= delta_p
             if loc.y < 0: p[i].y = abs(p[i].y)
             else: p[i].y =  -abs(p[i].y)
         
         if abs(loc.z) > L/2:
+          delta_p = 2 * abs(p[i].x)
+          delta_p_total+= delta_p
             if loc.z < 0: p[i].z =  abs(p[i].z)
             else: p[i].z =  -abs(p[i].z)
+    t_total+=dt
+    if t_total >= 0.1:
+      A=L**2*6
+      P=delta_p_total/(t_total*A)
+      print(f"Pressió: {P:.2e} Pa")
+      delta_p_total=0
+      t_total=0
     
