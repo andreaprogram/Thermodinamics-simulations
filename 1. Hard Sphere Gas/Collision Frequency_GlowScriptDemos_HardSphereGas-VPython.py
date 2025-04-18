@@ -1,4 +1,4 @@
-
+#QUESTIO 2
 from vpython import *
 #Web VPython 3.2
 import numpy as np
