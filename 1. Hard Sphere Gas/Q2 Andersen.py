@@ -147,14 +147,13 @@ while True:
       Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
       #TERMOSTAT D'ANDERSEN-------------------------------------------------------
       if random() < nu * dt:  # amb nu la freqüència de col·lisions i dt el pas de temps
-        theta = pi * random()
-        phi = 2 * pi * random()
-        v = np.random.normal(loc=0.0, scale=np.sqrt(k * T / mass))
-        px = mass * v * sin(theta) * cos(phi)
-        py = mass * v * sin(theta) * sin(phi)
-        pz = mass * v * cos(theta)
-        interchange(p[i].mag / mass, v)
-        p[i] = vector(px, py, pz)
+        theta = pi*random()
+        phi = 2*pi*random()
+        pavg = sqrt(2*mass*1.5*k*T) #moment promig amb la nova T
+        px = pavg*sin(theta)*cos(phi)
+        py = pavg*sin(theta)*sin(phi)
+        pz = pavg*cos(theta)
+        p[i].append(vector(px,py,pz))
     
     # Check for collisions
     hitlist = checkCollisions()
