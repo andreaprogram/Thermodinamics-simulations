@@ -143,7 +143,18 @@ while True:
     nhisto += 1
 
     # Update all positions
-    for i in range(Natoms): Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
+    for i in range(Natoms): 
+      Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
+      #TERMOSTAT D'ANDERSEN-------------------------------------------------------
+      if random() < nu * dt:  # amb nu la freqüència de col·lisions i dt el pas de temps
+        theta = pi * random()
+        phi = 2 * pi * random()
+        v = np.random.normal(loc=0.0, scale=np.sqrt(k * T / mass))
+        px = mass * v * sin(theta) * cos(phi)
+        py = mass * v * sin(theta) * sin(phi)
+        pz = mass * v * cos(theta)
+        interchange(p[i].mag / mass, v)
+        p[i] = vector(px, py, pz)
     
     # Check for collisions
     hitlist = checkCollisions()
