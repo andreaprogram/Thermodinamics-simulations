@@ -71,7 +71,7 @@ for i in range(Natoms):
     y = L*random()-L/2
     z = L*random()-L/2
     if i == 0: #fas que a l'àtom nº 1 li segueixi una traça per on passa
-        Atoms.append(sphere(pos=vector(x,y,z), radius=Ratom, color=color.cyan, make_trail=True, retain=100, trail_radius=0.3*Ratom))
+        Atoms.append(sphere(pos=vector(x,y,z), radius=Ratom, color=color.magenta, make_trail=True, retain=100, trail_radius=0.3*Ratom))
     else: Atoms.append(sphere(pos=vector(x,y,z), radius=Ratom, color=gray))
     apos.append(vec(x,y,z))
     theta = pi*random()
