@@ -220,15 +220,18 @@ while True:
             if loc.z < 0: p[i].z =  abs(p[i].z)
             else: p[i].z =  -abs(p[i].z)
     t_total+=dt
-    if t_total >= 0.5:
-      A=L**2*6
-      P=delta_p_total/(t_total*A)
-      pressio_sim.append(P)
-      print(f"Pressió: {P:.2e} Pa")
-      delta_p_total=0.0
-      T+=dT
-      temperatura_sim.append(T)
-      t_total=0.0
+      if t_total >= 1.6E-3:
+        A=L**2*6
+        P=delta_p_total/(t_total*A)
+        print(f"Pressió: {P:.2e} Pa")
+      
+        pressio_sim.append(P)
+        temperatura_sim.append(T)
+
+        T+=dT
+      
+        delta_p_total=0.0
+        t_total=0.0
 
    
   
