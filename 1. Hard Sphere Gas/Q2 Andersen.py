@@ -148,6 +148,7 @@ while True:
     for i in range(Natoms): 
       Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
       #TERMOSTAT D'ANDERSEN-------------------------------------------------------
+      nu = 10*1.6*10**(-6)
       if random() < nu * dt:  # amb nu la freqüència de col·lisions i dt el pas de temps
         theta = pi*random()
         phi = 2*pi*random()
@@ -210,13 +211,13 @@ while True:
             else: p[i].x =  -abs(p[i].x)  # si loc>0 estara a la paret dreta, aleshores cla que p<0
         
         if abs(loc.y) > L/2:
-          delta_p = 2 * abs(p[i].x)
+          delta_p = 2 * abs(p[i].y)
           delta_p_total+= delta_p
             if loc.y < 0: p[i].y = abs(p[i].y)
             else: p[i].y =  -abs(p[i].y)
         
         if abs(loc.z) > L/2:
-          delta_p = 2 * abs(p[i].x)
+          delta_p = 2 * abs(p[i].z)
           delta_p_total+= delta_p
             if loc.z < 0: p[i].z =  abs(p[i].z)
             else: p[i].z =  -abs(p[i].z)
