@@ -135,6 +135,8 @@ nhisto = 0 # number of histogram snapshots to average
 delta_p_total=0.0
 t_total = 0.0
 dT= 10
+pressio_sim=[]
+temperatura_sim=[]
 while True:
     rate(300)
   
@@ -225,8 +227,11 @@ while True:
     if t_total >= 0.1:
       A=L**2*6
       P=delta_p_total/(t_total*A)
+      pressio_sim.append(P)
       print(f"Pressió: {P:.2e} Pa")
 
     if t_total % 1.6e-5 == 0
       T+=dT
+      temperatura_sim.append(T)
+  
     
