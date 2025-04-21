@@ -225,9 +225,12 @@ while True:
       P=delta_p_total/(t_total*A)
       pressio_sim.append(P)
       print(f"Pressió: {P:.2e} Pa")
-
+      
     if t_total % 1.6e-5 == 0:
       T+=dT
       temperatura_sim.append(T)
+
+    delta_p_total=0
+    t_total=0
   
     
