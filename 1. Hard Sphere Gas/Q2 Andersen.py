@@ -134,7 +134,7 @@ nhisto = 0 # number of histogram snapshots to average
 
 delta_p_total=0.0
 t_total = 0.0
-
+dT= 10
 while True:
     rate(300)
   
@@ -143,7 +143,7 @@ while True:
     if nhisto % 10 == 0:
         vdist.data = accum
     nhisto += 1
-
+    
     # Update all positions
     for i in range(Natoms): 
       Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
@@ -226,6 +226,7 @@ while True:
       A=L**2*6
       P=delta_p_total/(t_total*A)
       print(f"Pressió: {P:.2e} Pa")
-      delta_p_total=0
-      t_total=0
+
+    if t_total % 1.6e-5 == 0
+      T+=dT
     
