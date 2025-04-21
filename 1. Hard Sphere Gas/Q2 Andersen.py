@@ -220,7 +220,7 @@ while True:
             if loc.z < 0: p[i].z =  abs(p[i].z)
             else: p[i].z =  -abs(p[i].z)
     t_total+=dt
-    if t_total >= 1.6E-3:
+    if t_total >= 0.5:
       A=L**2*6
       P=delta_p_total/(t_total*A)
       pressio_sim.append(P)
