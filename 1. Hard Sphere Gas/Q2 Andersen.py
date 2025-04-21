@@ -156,7 +156,7 @@ while True:
         px = pavg*sin(theta)*cos(phi)
         py = pavg*sin(theta)*sin(phi)
         pz = pavg*cos(theta)
-        p[i].append(vector(px,py,pz))
+        p[i]=vector(px,py,pz))
     
     # Check for collisions
     hitlist = checkCollisions()
