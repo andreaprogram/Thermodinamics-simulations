@@ -131,7 +131,7 @@ nhisto = 0 # number of histogram snapshots to average
 delta_p_total=0.0
 t_total = 0.0
 t_pressio=0
-dT= 10
+dT= 1
 pressio_sim=[]
 temperatura_sim=[]
 while True:
