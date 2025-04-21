@@ -3,6 +3,7 @@ from vpython import *
 #Web VPython 3.2
 import numpy as np
 # Hard-sphere gas.
+import matplotlib.pyplot as plt
 
 # Bruce Sherwood
 
@@ -233,6 +234,12 @@ while True:
         delta_p_total=0.0
         t_total=0.0
 
+    if len(temperatura_sim)>=100 and len(temperatura_sim)<200:
+        plt.plot(temperatura_sim, pressio_sim)
+        plt.xlabel('Temperatura')
+        plt.ylabel('Pressió')
+        plt.show()
+      
    
   
     
