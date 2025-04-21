@@ -18,13 +18,9 @@ Ratom = 0.03 # wildly exaggerated size of helium atom
 k = 1.4E-23 # Boltzmann constant [J/K]
 T = 300 # around room temperature [K]
 dt = 1E-5
-cross_sec= 0.21E-9
 n = Natoms / (L**3)  # densitat numèrica
 v_avg = np.sqrt(8 * k * T / (np.pi * mass))  # velocitat mitjana
 
-Z = (np.sqrt(2)*cross_sec*(n**2)*v_avg)/2 # freqüència de col·lisions
-temps_teo = 1 / Z
-print("Temps teòric mig entre col·lisions", temps_teo)
 
 # AJUSTOS VISUALITZACIÓ----------------------------------------------------------
 animation = canvas( width=win, height=win, align='left')
@@ -207,20 +203,20 @@ while True:
     for i in range(Natoms):
         loc = apos[i]
         if abs(loc.x) > L/2: #considerem quan una particula 'sobrepassa' la paret
-          delta_p = 2 * abs(p[i].x)
-          delta_p_total+= delta_p
+            delta_p = 2 * abs(p[i].x)
+            delta_p_total+= delta_p
             if loc.x < 0: p[i].x =  abs(p[i].x) #si loc<0 estarà a la paret esquerra, aleshores cal que p>0
             else: p[i].x =  -abs(p[i].x)  # si loc>0 estara a la paret dreta, aleshores cla que p<0
         
         if abs(loc.y) > L/2:
-          delta_p = 2 * abs(p[i].y)
-          delta_p_total+= delta_p
+            delta_p = 2 * abs(p[i].y)
+            delta_p_total+= delta_p
             if loc.y < 0: p[i].y = abs(p[i].y)
             else: p[i].y =  -abs(p[i].y)
         
         if abs(loc.z) > L/2:
-          delta_p = 2 * abs(p[i].z)
-          delta_p_total+= delta_p
+            delta_p = 2 * abs(p[i].z)
+            delta_p_total+= delta_p
             if loc.z < 0: p[i].z =  abs(p[i].z)
             else: p[i].z =  -abs(p[i].z)
     t_total+=dt
@@ -230,7 +226,7 @@ while True:
       pressio_sim.append(P)
       print(f"Pressió: {P:.2e} Pa")
 
-    if t_total % 1.6e-5 == 0
+    if t_total % 1.6e-5 == 0:
       T+=dT
       temperatura_sim.append(T)
   
