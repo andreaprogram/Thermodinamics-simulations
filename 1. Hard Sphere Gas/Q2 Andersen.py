@@ -224,7 +224,7 @@ while True:
     if t_total >= 1.6E-3:
         A=L**2*6
         P=delta_p_total/(t_total*A)
-        print(f"Pressió: {P:.2e} Pa")
+        print(f"P={P:.2e} Pa", f"T={T:.2e} K")
       
         pressio_sim.append(P)
         temperatura_sim.append(T)
