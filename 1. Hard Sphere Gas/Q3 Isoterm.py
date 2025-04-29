@@ -226,14 +226,14 @@ while True:
     if t_total >= 1.6E-3:
         A=(L**2)*4+2*(L_x**2)
         P=delta_p_total/(t_total*A)
-        L_x+=dx
+        
         V=(L**2)*L_x
         print(f"P={P:.2e} Pa", f"V={V:.2f} m^3")
       
         pressio_sim.append(P)
         volum_sim.append(V)
         inver_volum_sim.append(1/V)
-
+        L_x+=0.1
         
         delta_p_total=0.0
         t_total=0.0
