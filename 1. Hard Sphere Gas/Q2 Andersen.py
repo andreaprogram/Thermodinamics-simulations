@@ -131,7 +131,7 @@ nhisto = 0 # number of histogram snapshots to average
 
 delta_p_total=0.0
 t_total = 0.0
-dT= 1
+dT= 10
 pressio_sim=[]
 temperatura_sim=[]
 while True:
@@ -147,7 +147,7 @@ while True:
     for i in range(Natoms): 
       Atoms[i].pos = apos[i] = apos[i] + (p[i]/mass)*dt
       #TERMOSTAT D'ANDERSEN-------------------------------------------------------
-      nu = 10*1.6*10**(-6)
+      nu = 10**3
       if random() < nu * dt:  # amb nu la freqüència de col·lisions i dt el pas de temps
         theta = pi*random()
         phi = 2*pi*random()
@@ -234,11 +234,12 @@ while True:
         delta_p_total=0.0
         t_total=0.0
 
-    if len(temperatura_sim)>=100 and len(temperatura_sim)<200:
+    if len(temperatura_sim)==10:
         plt.plot(temperatura_sim, pressio_sim)
         plt.xlabel('Temperatura')
         plt.ylabel('Pressió')
         plt.show()
+        break
       
    
   
