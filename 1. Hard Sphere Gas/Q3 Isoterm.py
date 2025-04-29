@@ -133,7 +133,6 @@ nhisto = 0 # number of histogram snapshots to average
 delta_p_total=0.0
 t_total = 0.0
 dx= 0.1
-x_pasos=0
 pressio_sim=[]
 volum_sim=[]
 inver_volum_sim=[]
@@ -227,7 +226,7 @@ while True:
     if t_total >= 1.6E-3:
         A=(L**2)*4+2*(L_x**2)
         P=delta_p_total/(t_total*A)
-        x_steps+=1
+        L_x+=dx
         V=(L**2)*L_x
         print(f"P={P:.2e} Pa", f"V={V:.2f} m^3")
       
@@ -235,8 +234,7 @@ while True:
         volum_sim.append(V)
         inver_volum_sim.append(1/V)
 
-        L_x=1+dx*x_pasos
-        V=(L**2)*L_x
+        
         delta_p_total=0.0
         t_total=0.0
 
