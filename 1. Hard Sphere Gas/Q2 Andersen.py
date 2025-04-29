@@ -234,8 +234,8 @@ while True:
         delta_p_total=0.0
         t_total=0.0
 
-    if len(temperatura_sim)==10:
-        T_ideal = np.linspace(300,400,1000)
+    if len(temperatura_sim)==20:
+        T_ideal = np.linspace(300,500,1000)
         def P(T):
           return N*k*T/(L**3)
           
