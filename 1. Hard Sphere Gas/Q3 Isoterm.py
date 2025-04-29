@@ -241,9 +241,9 @@ while True:
     if len(volum_sim)==20:
         Vinvers_ideal = np.linspace(1,1/1.3,1000)
         def P(Vinvers):
-          return Natoms*k*T*V_invers
+          return Natoms*k*T*Vinvers
           
-        #plt.plot(Vinvers_ideal, P(Vinvers_ideal), label='Gas ideal')
+        plt.plot(Vinvers_ideal, P(Vinvers_ideal), label='Gas ideal')
         plt.scatter(inver_volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
         plt.xlabel('1/Volum (m^(-3))')
