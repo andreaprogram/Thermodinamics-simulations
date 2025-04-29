@@ -240,7 +240,7 @@ while True:
           return N*k*T/(L**3)
           
         plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
-        plt.scatter(temperatura_sim, pressio_sim, label='Simulació')
+        plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="violet", s=1)
         plt.legend()
         plt.xlabel('Temperatura (K)')
         plt.ylabel('Pressió (Pa)')
