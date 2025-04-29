@@ -239,7 +239,7 @@ while True:
         t_total=0.0
 
     if len(volum_sim)==20:
-        Vinvers_ideal = np.linspace(1,1/3,1000)
+        Vinvers_ideal = np.linspace(1,1/1.3,1000)
         def P(Vinvers):
           return Natoms*k*T*V_invers
           
