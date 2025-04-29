@@ -242,8 +242,8 @@ while True:
         plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
         plt.scatter(temperatura_sim, pressio_sim, label='Simulació')
         plt.legend()
-        plt.xlabel('Temperatura')
-        plt.ylabel('Pressió')
+        plt.xlabel('Temperatura (K)')
+        plt.ylabel('Pressió (Pa)')
         plt.show()
         break
       
