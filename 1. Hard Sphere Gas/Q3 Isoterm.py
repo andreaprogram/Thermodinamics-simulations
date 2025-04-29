@@ -235,7 +235,7 @@ while True:
         volum_sim.append(V)
         inver_volum_sim.append(1/V)
 
-        L_x=1+x_pasos
+        L_x=1+dx*x_pasos
         V=(L**2)*L_x
         delta_p_total=0.0
         t_total=0.0
