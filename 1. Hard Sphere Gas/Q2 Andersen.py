@@ -240,7 +240,7 @@ while True:
           return Natoms*k*T/(L**3)
           
         plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
-        plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="violet", s=5)
+        plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
         plt.xlabel('Temperatura (K)')
         plt.ylabel('Pressió (Pa)')
