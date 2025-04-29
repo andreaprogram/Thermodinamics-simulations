@@ -232,7 +232,7 @@ while True:
         volum_sim.append(V)
 
         L_x+=dx
-      
+        V=L**2*L_x
         delta_p_total=0.0
         t_total=0.0
 
