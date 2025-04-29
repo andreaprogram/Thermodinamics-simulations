@@ -235,7 +235,13 @@ while True:
         t_total=0.0
 
     if len(temperatura_sim)==10:
-        plt.plot(temperatura_sim, pressio_sim)
+        T_ideal = np.linspace(300,400,1000)
+        def P(T):
+          return N*k*T/(L**3)
+          
+        plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
+        plt.scatter(temperatura_sim, pressio_sim, label='Simulació')
+        plt.legend()
         plt.xlabel('Temperatura')
         plt.ylabel('Pressió')
         plt.show()
