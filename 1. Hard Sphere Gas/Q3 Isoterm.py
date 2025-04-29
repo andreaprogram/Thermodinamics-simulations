@@ -13,7 +13,7 @@ Natoms = 500  # fixem N=500
 
 # CONDICIONS TERMODINAMIQUES DEL SISTEMA-----------------------------
 L = 1 # container is a cube L on a side
-L_x=1
+L_x = 1
 gray = color.gray(0.7) # color of edges of container
 mass = 4E-3/6E23 # helium mass (massa molar)
 Ratom = 0.03 # wildly exaggerated size of helium atom
@@ -133,7 +133,7 @@ nhisto = 0 # number of histogram snapshots to average
 delta_p_total=0.0
 t_total = 0.0
 dx= 0.1
-V=L**2*L_x
+V=(L**2)*L_x
 pressio_sim=[]
 volum_sim=[]
 inver_volum_sim=[]
@@ -225,7 +225,7 @@ while True:
             else: p[i].z =  -abs(p[i].z)
     t_total+=dt
     if t_total >= 1.6E-3:
-        A=L**2*4+2*L_x**2
+        A=(L**2)*4+2*(L_x**2)
         P=delta_p_total/(t_total*A)
         print(f"P={P:.2e} Pa", f"V={V:.2f} m^3")
       
@@ -234,7 +234,7 @@ while True:
         inver_volum_sim.append(1/V)
 
         L_x+=dx
-        V=L**2*L_x
+        V=(L**2)*L_x
         delta_p_total=0.0
         t_total=0.0
 
