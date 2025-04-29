@@ -237,7 +237,7 @@ while True:
     if len(temperatura_sim)==20:
         T_ideal = np.linspace(300,500,1000)
         def P(T):
-          return N*k*T/(L**3)
+          return Natoms*k*T/(L**3)
           
         plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
         plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="violet", s=1)
