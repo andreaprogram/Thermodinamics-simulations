@@ -13,6 +13,7 @@ Natoms = 500  # fixem N=500
 
 # CONDICIONS TERMODINAMIQUES DEL SISTEMA-----------------------------
 L = 1 # container is a cube L on a side
+L_x=1
 gray = color.gray(0.7) # color of edges of container
 mass = 4E-3/6E23 # helium mass (massa molar)
 Ratom = 0.03 # wildly exaggerated size of helium atom
@@ -131,7 +132,8 @@ nhisto = 0 # number of histogram snapshots to average
 
 delta_p_total=0.0
 t_total = 0.0
-dT= 10
+dx= 0.1
+V=L**2*L_x
 pressio_sim=[]
 temperatura_sim=[]
 while True:
@@ -203,7 +205,7 @@ while True:
     
     for i in range(Natoms):
         loc = apos[i]
-        if abs(loc.x) > L/2: #considerem quan una particula 'sobrepassa' la paret
+        if abs(loc.x) > L_x/2: #considerem quan una particula 'sobrepassa' la paret
             delta_p = 2 * abs(p[i].x)
             delta_p_total+= delta_p
             if loc.x < 0: p[i].x =  abs(p[i].x) #si loc<0 estarà a la paret esquerra, aleshores cal que p>0
@@ -222,27 +224,27 @@ while True:
             else: p[i].z =  -abs(p[i].z)
     t_total+=dt
     if t_total >= 1.6E-3:
-        A=L**2*6
+        A=L**2*4+2*L_x**2
         P=delta_p_total/(t_total*A)
-        print(f"P={P:.2e} Pa", f"T={T:.2e} K")
+        print(f"P={P:.2e} Pa", f"V={V:.2e} m^3")
       
         pressio_sim.append(P)
-        temperatura_sim.append(T)
+        volum_sim.append(V)
 
-        T+=dT
+        L_x+=dx
       
         delta_p_total=0.0
         t_total=0.0
 
-    if len(temperatura_sim)==20:
+    if len(volum_sim)==20:
         T_ideal = np.linspace(300,500,1000)
         def P(T):
           return Natoms*k*T/(L**3)
           
-        plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
-        plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
+        #plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
+        plt.scatter(volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
-        plt.xlabel('Temperatura (K)')
+        plt.xlabel('Volum (m^3)')
         plt.ylabel('Pressió (Pa)')
         plt.show()
         break
