@@ -227,7 +227,7 @@ while True:
     if t_total >= 1.6E-3:
         A=L**2*4+2*L_x**2
         P=delta_p_total/(t_total*A)
-        print(f"P={P:.2e} Pa", f"V={V:.2e} m^3")
+        print(f"P={P:.2e} Pa", f"V={V:.2f} m^3")
       
         pressio_sim.append(P)
         volum_sim.append(V)
@@ -239,14 +239,14 @@ while True:
         t_total=0.0
 
     if len(volum_sim)==20:
-        V_ideal = np.linspace(1,2,1000)
-        def P(V):
-          return Natoms*k*T/(V)
+        Vinvers_ideal = np.linspace(1,1/3,1000)
+        def P(Vinvers):
+          return Natoms*k*T*V_invers
           
-        #plt.plot(V_ideal, P(V_ideal), label='Gas ideal')
+        #plt.plot(Vinvers_ideal, P(Vinvers_ideal), label='Gas ideal')
         plt.scatter(inver_volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
-        plt.xlabel('Volum (m^3)')
+        plt.xlabel('1/Volum (m^(-3))')
         plt.ylabel('Pressió (Pa)')
         plt.show()
         break
