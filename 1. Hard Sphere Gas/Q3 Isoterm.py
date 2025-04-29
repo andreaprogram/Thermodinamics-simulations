@@ -136,6 +136,7 @@ dx= 0.1
 V=L**2*L_x
 pressio_sim=[]
 volum_sim=[]
+inver_volum_sim=[]
 while True:
     rate(300)
   
@@ -230,6 +231,7 @@ while True:
       
         pressio_sim.append(P)
         volum_sim.append(V)
+        inver_volum_sim.append(1/V)
 
         L_x+=dx
         V=L**2*L_x
@@ -242,7 +244,7 @@ while True:
           return Natoms*k*T/(V)
           
         #plt.plot(V_ideal, P(V_ideal), label='Gas ideal')
-        plt.scatter(volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
+        plt.scatter(inver_volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
         plt.xlabel('Volum (m^3)')
         plt.ylabel('Pressió (Pa)')
