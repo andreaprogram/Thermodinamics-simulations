@@ -237,11 +237,11 @@ while True:
         t_total=0.0
 
     if len(volum_sim)==20:
-        T_ideal = np.linspace(300,500,1000)
-        def P(T):
-          return Natoms*k*T/(L**3)
+        V_ideal = np.linspace(1,2,1000)
+        def P(V):
+          return Natoms*k*T/(V)
           
-        #plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
+        #plt.plot(V_ideal, P(V_ideal), label='Gas ideal')
         plt.scatter(volum_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
         plt.xlabel('Volum (m^3)')
