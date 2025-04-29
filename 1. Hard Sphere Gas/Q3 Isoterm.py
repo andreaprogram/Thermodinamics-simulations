@@ -135,7 +135,7 @@ t_total = 0.0
 dx= 0.1
 V=L**2*L_x
 pressio_sim=[]
-temperatura_sim=[]
+volum_sim=[]
 while True:
     rate(300)
   
