@@ -30,7 +30,7 @@ def Cv(d):
 print("Indiqueu la dimensio en que voleu el sistema (1, 2 o 3)")
 while True:
     d = int(input())
-    if d==1 or d==1 or d==3:
+    if d==1 or d==2 or d==3:
         print("La dimensio escollida es d =", d)
         break
     else:
