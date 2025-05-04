@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 N=1000 #nombre de mol.lecules
 V=1 #volum [m^3]
 T=293 #temperatura [K]
-k=
+k=1.4E-23 [J/K]
 
 
 print("Indicate the dimension in which you want the system (1, 2 or 3)")
@@ -25,6 +25,7 @@ while True:
     else:
         print("Please enter only 1, 2 or 3")
 
-C_v_teo=d*N*k/2
+C_v_teo=d*N*k/2 #calculem la capacitat teòrica
+
 
     
