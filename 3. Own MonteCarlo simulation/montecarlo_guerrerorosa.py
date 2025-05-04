@@ -20,8 +20,14 @@ delta=L/2 #desplacament
 
 n_p = 100 #nombre de passos de la simulacio
 
-def E(r): #potencial harmonic
-    return 0.5 * k * np.sum(r**2)
+def m(r):  # modul al quadrat d’un vector posicio r
+    return np.sum(r**2)
+
+def E(R):  # energia total del sistema
+    E_total = 0
+    for i in range(len(R)): #R es el vector de vectors posicions r de les particules
+        E_total += 0.5 * k * m(R[i]) #R[i] es el vector posicio de la particula i
+    return E_total
 
 def Cv(d):
     return d*N*kb/2 #calculem la capacitat teorica
@@ -44,15 +50,13 @@ r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicio
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
-    E_inicial=E(r) #calculem l'energia inicial del sistema
     i = np.random.randint(N) #numero de particula aleatori
     r_nova = r[i] + np.random.uniform(-delta, delta, size = d) #canviem la posicio de manera aleatoria
-    delta_E=E(r_nova)-E_inicial  #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
-    
+    delta_E=delta_E= 0.5 * k *(m(r_nova)-m(r[i])) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
+     
     if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
-        E_inicial+=delta_E
         r[i]=r_nova
-        energies.append(E_inicial) #es guarda la nova energia
+    energies.append(E(r)) #es guarda la nova energia
 
 energies = np.array(energies)
 Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
