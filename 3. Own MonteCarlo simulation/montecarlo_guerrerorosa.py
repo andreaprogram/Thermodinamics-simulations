@@ -16,6 +16,7 @@ T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
 k=1 #constant del potencial harmonic E = 1/2*k*r^2
 L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
+delta=L/2 #desplacament
 
 n_p = 100 #nombre de passos de la simulacio
 
@@ -42,6 +43,9 @@ while True:
 r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
 
 for pas in range(n_p):
+    i = np.random.randint(N) #numero de particula aleatori
+    r_nova = r[i] + np.random.uniform(-delta, delta, size = d)
+    
     
 
 
