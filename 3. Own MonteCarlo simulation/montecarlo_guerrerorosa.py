@@ -42,8 +42,7 @@ while True:
 r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
 
 for pas in range(n_p):
-    for i in range(N):
-        r[i]=np.
+    
 
 
 
