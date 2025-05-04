@@ -41,10 +41,26 @@ while True:
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
 r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
-
+energies=[]
 for pas in range(n_p):
+    E_inicial=E(r)
     i = np.random.randint(N) #numero de particula aleatori
     r_nova = r[i] + np.random.uniform(-delta, delta, size = d)
+    delta_E=E(r_nova)-E_inicial
+    
+    if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kbT)):
+        E_inical+=delta_E
+        r[i]=r_nova
+        energies.append(E_incial)
+
+E=np.mean(energies)
+E2=np.mean(energies**2)
+Cv_sim=(E2-E**2)/(kb*T**2)
+
+print("Capacitat calorífica simulació",Cv_sim)
+print("Capacitat calorífica teorica",Cv(d))
+    
+
     
     
 
