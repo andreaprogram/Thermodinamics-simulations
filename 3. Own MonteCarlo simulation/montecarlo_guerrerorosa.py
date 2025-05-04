@@ -24,7 +24,7 @@ def E(r): #potencial harmonic
     return 0.5 * k * np.sum(r**2)
 
 def Cv(d):
-    return d*N*k/2 #calculem la capacitat teorica
+    return d*N*kb/2 #calculem la capacitat teorica
     
 #DEMANAR LA DIMENSIO--------------------------------------------------------------
 print("Indiqueu la dimensio en que voleu el sistema (1, 2 o 3)")
@@ -41,21 +41,21 @@ while True:
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
 r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
-energies=[]
-for pas in range(n_p):
-    E_inicial=E(r)
-    i = np.random.randint(N) #numero de particula aleatori
-    r_nova = r[i] + np.random.uniform(-delta, delta, size = d)
-    delta_E=E(r_nova)-E_inicial
-    
-    if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kbT)):
-        E_inical+=delta_E
-        r[i]=r_nova
-        energies.append(E_incial)
+energies=[] #llista on s'emmagatzemmen les energies del sistema
 
-E=np.mean(energies)
-E2=np.mean(energies**2)
-Cv_sim=(E2-E**2)/(kb*T**2)
+for pas in range(n_p):
+    E_inicial=E(r) #calculem l'energia inicial del sistema
+    i = np.random.randint(N) #numero de particula aleatori
+    r_nova = r[i] + np.random.uniform(-delta, delta, size = d) #canviem la posicio de manera aleatoria
+    delta_E=E(r_nova)-E_inicial  #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
+    
+    if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
+        E_inicial+=delta_E
+        r[i]=r_nova
+        energies.append(E_inicial) #es guarda la nova energia
+
+energies = np.array(energies)
+Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
 
 print("Capacitat calorífica simulació",Cv_sim)
 print("Capacitat calorífica teorica",Cv(d))
