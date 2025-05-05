@@ -46,12 +46,12 @@ while True:
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
 v_rms=np.sqrt(3*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
-v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions, que segueix distribucio MB
+v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les velocitats de les N particules en d dimensions, que segueix distribucio MB
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
     i = np.random.randint(N) #numero de particula aleatori
-    v_nova = v[i] + np.random.uniform(-delta, delta, size = d) #canviem la posicio de manera aleatoria
+    v_nova = v[i] + np.random.uniform(-delta, delta, size = d) #canviem la velocitat de manera aleatoria
     delta_E=delta_E= 0.5 * m *(m(v_nova)-m(v[i])) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
      
     if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
