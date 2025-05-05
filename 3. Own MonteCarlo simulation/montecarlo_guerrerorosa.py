@@ -45,7 +45,8 @@ while True:
 
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
-v = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
+v_rms=np.sqrt(3*kb*T/m)
+v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
@@ -62,6 +63,7 @@ Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulaci
 
 print("Capacitat calorífica simulació",Cv_sim)
 print("Capacitat calorífica teorica",Cv(d))
+print("Error relatiu", np.abs(Cv_sim-Cv(d))/Cv(d))
     
 
     
