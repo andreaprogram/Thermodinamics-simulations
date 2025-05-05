@@ -52,12 +52,12 @@ energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
     i = np.random.randint(N) #numero de particula aleatori
-    r_nova = r[i] + np.random.uniform(-delta, delta, size = d) #canviem la posicio de manera aleatoria
-    delta_E=delta_E= 0.5 * k *(m(r_nova)-m(r[i])) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
+    v_nova = v[i] + np.random.uniform(-delta, delta, size = d) #canviem la posicio de manera aleatoria
+    delta_E=delta_E= 0.5 * m *(m(v_nova)-m(v[i])) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
      
     if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
-        r[i]=r_nova
-    energies.append(E(r)) #es guarda la nova energia
+        v[i]=v_nova
+    energies.append(E(v)) #es guarda la nova energia
 
 energies = np.array(energies)
 Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
