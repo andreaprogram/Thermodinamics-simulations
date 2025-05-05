@@ -8,14 +8,18 @@ Created on Sun May  4 13:11:04 2025
 import numpy as np
 import matplotlib.pyplot as plt
 
-# VARIABLES TERMODINAMIQUES FIXADES-----------------------------------------------
+# VARIABLES TERMODINAMIQUES FIXADES I FUNCIONS NECESSARIES-----------------------------------------------
 
 N=700 #nombre de mol.lecules
 T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
 m=4E-3/6E23 #massa de l'Heli
+v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
+delta= v_rms/10 #variacio maxima en la velocitat
+
 
 n_p = 100*N #nombre de passos de la simulacio
+
 
 def mod(v):  # modul al quadrat d’un vector velocitat v
     return np.sum(v**2)
@@ -28,7 +32,10 @@ def E(V):  # energia total del sistema Ec=0.5*m*v**2
 
 def Cv(d):
     return d*N*kb/2 #calculem la capacitat teorica
-    
+
+
+
+
 #DEMANAR LA DIMENSIO--------------------------------------------------------------
 print("Indiqueu la dimensio en que voleu el sistema (1, 2 o 3)")
 while True:
@@ -43,8 +50,6 @@ while True:
 
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
-v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
-delta= v_rms/2 #variació
 v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les velocitats de les N particules en d dimensions, que segueix distribucio MB
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
