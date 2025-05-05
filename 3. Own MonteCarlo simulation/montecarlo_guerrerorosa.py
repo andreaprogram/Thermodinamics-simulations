@@ -10,13 +10,12 @@ import matplotlib.pyplot as plt
 
 # VARIABLES TERMODINAMIQUES FIXADES-----------------------------------------------
 
-N=1000 #nombre de mol.lecules
+N=700 #nombre de mol.lecules
 T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
-L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
 m=4E-3/6E23 #massa de l'Heli
 
-n_p = 1000 #nombre de passos de la simulacio
+n_p = 100*N #nombre de passos de la simulacio
 
 def mod(v):  # modul al quadrat d’un vector velocitat v
     return np.sum(v**2)
@@ -56,14 +55,16 @@ for pas in range(n_p):
      
     if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
         v[i]=v_nova
-    energies.append(E(v)) #es guarda la nova energia
+
+    if pas % 10:
+        energies.append(E(v)) #es guarda la nova energia
 
 energies = np.array(energies)
 Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
 
 print("Capacitat calorífica simulació",Cv_sim)
 print("Capacitat calorífica teorica",Cv(d))
-print("Error relatiu", np.abs(Cv_sim-Cv(d))/Cv(d))
+print("Error relatiu", np.abs(Cv_sim-Cv(d))/Cv(d)*100, "%")
     
 
     
