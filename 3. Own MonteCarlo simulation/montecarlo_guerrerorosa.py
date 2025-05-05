@@ -45,8 +45,8 @@ while True:
 
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
-v_rms=np.sqrt(3*kb*T/m)
-v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
+v_rms=np.sqrt(3*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
+v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions, que segueix distribucio MB
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
