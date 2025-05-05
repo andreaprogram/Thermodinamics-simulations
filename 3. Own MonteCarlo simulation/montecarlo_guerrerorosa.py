@@ -11,11 +11,10 @@ import matplotlib.pyplot as plt
 # VARIABLES TERMODINAMIQUES FIXADES-----------------------------------------------
 
 N=1000 #nombre de mol.lecules
-V=1 #volum [m^3]
 T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
 L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
-delta=L/2 #desplacament
+dv= #desplacament
 m=4E-3/6E23 #massa de l'Heli
 
 n_p = 100 #nombre de passos de la simulacio
