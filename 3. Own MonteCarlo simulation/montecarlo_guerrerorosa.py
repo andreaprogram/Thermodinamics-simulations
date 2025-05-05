@@ -14,7 +14,6 @@ N=1000 #nombre de mol.lecules
 V=1 #volum [m^3]
 T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
-k=1 #constant del potencial harmonic E = 1/2*k*r^2
 L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
 delta=L/2 #desplacament
 m=4E-3/6E23 #massa de l'Heli
@@ -24,7 +23,7 @@ n_p = 100 #nombre de passos de la simulacio
 def m(v):  # modul al quadrat d’un vector velocitat v
     return np.sum(v**2)
 
-def E(V):  # energia total del sistema
+def E(V):  # energia total del sistema Ec=0.5*m*v**2
     E_total = 0
     for i in range(len(V)): #V es el vector de vectors velocitats v de les particules
         E_total += 0.5 * m * m(V[i]) #V[i] es el vector velocitat de la particula i
