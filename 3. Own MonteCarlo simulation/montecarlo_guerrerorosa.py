@@ -17,16 +17,17 @@ kb=1.4E-23 #constant de Boltzmann [J/K]
 k=1 #constant del potencial harmonic E = 1/2*k*r^2
 L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
 delta=L/2 #desplacament
+m=4E-3/6E23 #massa de l'Heli
 
 n_p = 100 #nombre de passos de la simulacio
 
-def m(r):  # modul al quadrat d’un vector posicio r
-    return np.sum(r**2)
+def m(v):  # modul al quadrat d’un vector velocitat v
+    return np.sum(v**2)
 
-def E(R):  # energia total del sistema
+def E(V):  # energia total del sistema
     E_total = 0
-    for i in range(len(R)): #R es el vector de vectors posicions r de les particules
-        E_total += 0.5 * k * m(R[i]) #R[i] es el vector posicio de la particula i
+    for i in range(len(V)): #V es el vector de vectors velocitats v de les particules
+        E_total += 0.5 * m * m(V[i]) #V[i] es el vector velocitat de la particula i
     return E_total
 
 def Cv(d):
@@ -46,7 +47,7 @@ while True:
 
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
-r = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
+v = np.random.uniform(-L, L, size=(N, d)) #llista on s'emmagatzemmen les posicions de les N particules en d dimensions contingudes en la longitud L
 energies=[] #llista on s'emmagatzemmen les energies del sistema
 
 for pas in range(n_p):
