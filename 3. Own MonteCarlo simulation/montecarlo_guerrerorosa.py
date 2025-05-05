@@ -16,7 +16,7 @@ kb=1.4E-23 #constant de Boltzmann [J/K]
 L=1 #llargada de la recta / costat del pla / aresta de la caixa on son els atoms
 m=4E-3/6E23 #massa de l'Heli
 
-n_p = 100 #nombre de passos de la simulacio
+n_p = 1000 #nombre de passos de la simulacio
 
 def mod(v):  # modul al quadrat d’un vector velocitat v
     return np.sum(v**2)
@@ -24,7 +24,7 @@ def mod(v):  # modul al quadrat d’un vector velocitat v
 def E(V):  # energia total del sistema Ec=0.5*m*v**2
     E_total = 0
     for i in range(len(V)): #V es el vector de vectors velocitats v de les particules
-        E_total += 0.5 * m * m(modV[i]) #V[i] es el vector velocitat de la particula i
+        E_total += 0.5 * m * mod(V[i]) #V[i] es el vector velocitat de la particula i
     return E_total
 
 def Cv(d):
