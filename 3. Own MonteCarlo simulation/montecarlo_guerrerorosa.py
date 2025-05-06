@@ -14,8 +14,6 @@ N=700 #nombre de mol.lecules
 T=293 #temperatura [K]
 kb=1.4E-23 #constant de Boltzmann [J/K]
 m=4E-3/6E23 #massa de l'Heli
-v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
-delta= v_rms/10 #variacio maxima en la velocitat
 
 
 n_p = 100*N #nombre de passos de la simulacio
@@ -46,6 +44,8 @@ while True:
     else:
         print("Si us plau introdueix unicament 1, 2 o 3")
 
+v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
+delta= v_rms/10 #variacio maxima en la velocitat
 
 
 
