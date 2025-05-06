@@ -16,7 +16,7 @@ kb=1.4E-23 #constant de Boltzmann [J/K]
 m=4E-3/6E23 #massa de l'Heli
 
 
-n_p = 100*N #nombre de passos de la simulacio
+n_p = 1000*N #nombre de passos de la simulacio
 
 
 def mod(v):  # modul al quadrat d’un vector velocitat v
@@ -61,7 +61,7 @@ for pas in range(n_p):
     if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
         v[i]=v_nova
 
-    if pas % 10:
+    if pas % 10*N==0:
         energies.append(E(v)) #es guarda la nova energia
 
 energies = np.array(energies)
