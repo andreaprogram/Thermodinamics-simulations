@@ -60,11 +60,12 @@ while pas<n_p:
     
 energies = np.array(energies)
 energies2 = np.array(energies2)
-cv_sim=(np.mean(energies2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
+Cv_sim=(np.mean(energies2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
 
-print("Capacitat calorífica simulació",cv_sim)
-print("Capacitat calorífica teorica",d*N*kb/2)
-print("Error relatiu", np.abs(cv_sim-d*N*kb/2)/(d*N*kb/2)*100, "%")
+print("Capacitat calorífica simulació", f"{Cv_sim:.2e}")
+print("Capacitat calorífica teorica",f"{Cv_teo:.2e}")
+print("Error relatiu", f"{np.abs(Cv_sim-Cv_teo)/(Cv_teo)*100:.2f} %")
+    
     
 
     
