@@ -12,9 +12,8 @@ import matplotlib.pyplot as plt
 
 N=3000 #nombre de mol.lecules
 T=293 #temperatura [K]
-kb=1.4E-23 #constant de Boltzmann [J/K]
-m=4E-3/6E23 #massa de l'Heli
-
+kb=1.380649E-23 #constant de Boltzmann [J/K]
+m=6.646E-27 #massa de l'Heli [kg]
 
 
 n_p = 10000*N #nombre de passos de la simulacio
