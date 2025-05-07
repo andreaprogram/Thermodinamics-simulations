@@ -6,7 +6,6 @@ Created on Sun May  4 13:11:04 2025
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 # VARIABLES TERMODINAMIQUES FIXADES I FUNCIONS NECESSARIES-----------------------------------------------
 
