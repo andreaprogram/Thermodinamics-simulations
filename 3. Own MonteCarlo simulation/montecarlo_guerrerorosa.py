@@ -10,27 +10,21 @@ import matplotlib.pyplot as plt
 
 # VARIABLES TERMODINAMIQUES FIXADES I FUNCIONS NECESSARIES-----------------------------------------------
 
-N=700 #nombre de mol.lecules
+N=3000 #nombre de mol.lecules
 T=293 #temperatura [K]
 kb=1.380649E-23 #constant de Boltzmann [J/K]
 m=6.646E-27 #massa de l'Heli [kg]
 
 
-n_p = 1000*N #nombre de passos de la simulacio
+def E(c): #funcio que calcula l'energia (cinetica), on c es un ARRAY
+    return 0.5 * m *np.sum(c**2)
+
+def C(D): #funcio capacitat calorifica teorica
+    return 0.5 * D*N*kb 
 
 
-def mod(v):  # modul al quadrat d’un vector velocitat v
-    return np.sum(v**2)
 
-def E(V):  # energia total del sistema Ec=0.5*m*v**2
-    E_total = 0
-    for i in range(len(V)): #V es el vector de vectors velocitats v de les particules
-        E_total += 0.5 * m * mod(V[i]) #V[i] es el vector velocitat de la particula i
-    return E_total
-
-def Cv(d):
-    return d*N*kb/2 #calculem la capacitat teorica
-
+n_p = 10000*N #nombre de passos de la simulacio
 
 
 
@@ -44,36 +38,44 @@ while True:
     else:
         print("Si us plau introdueix unicament 1, 2 o 3")
 
-v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
-delta= v_rms/10 #variacio maxima en la velocitat
 
+
+#Alterarem les velocitats de les particules, doncs definim els parametres:
+v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
+delta= v_rms #variacio maxima en la velocitat
 
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
 v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les velocitats de les N particules en d dimensions, que segueix distribucio MB
-energies=[] #llista on s'emmagatzemmen les energies del sistema
+energies=[] #llista on s'emmagatzemmen les energies del sistema 
+pas=0 #variable pel recompte de passos
 
-for pas in range(n_p):
+while pas<n_p:
     i = np.random.randint(N) #numero de particula aleatori
     v_nova = v[i] + np.random.uniform(-delta, delta, size = d) #canviem la velocitat de manera aleatoria
-    delta_E=delta_E= 0.5 * m *(mod(v_nova)-mod(v[i])) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
+    delta_E= E(v_nova) - E(v[i]) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
      
-    if delta_E<0 or np.random.rand()<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
+    if delta_E<0 or np.random.uniform(0,1) < np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
         v[i]=v_nova
 
-    if pas % 10*N==0:
-        energies.append(E(v)) #es guarda la nova energia
+    #emmagatzem els valors d'energia cada 1000 execucions del bucle ja que no tots els valors son d'interes, per exemple, amb aixo descartem els 1000 primers
+    # i obtenim uns resultats mes acurats perque estem interessats en fer estadistica i per aixo necessitem un alt nombre de punts amb que treballar
+    
+    if pas % 10*N==0 and pas>0: 
+        energia_total=E(v)
+        energies.append(energia_total)
+    pas+=1
+    
+energies = np.array(energies) 
+Cv_sim=(np.mean(energies**2)-(np.mean(energies))**2)/(kb*T**2) #calcul Cv simulacio
+Cv_teo = C(d)
 
-energies = np.array(energies)
-Cv_sim=(np.mean(energies**2)-np.mean(energies)**2)/(kb*T**2) #calcul Cv simulacio
-
-print("Capacitat calorífica simulació",Cv_sim)
-print("Capacitat calorífica teorica",Cv(d))
-print("Error relatiu", np.abs(Cv_sim-Cv(d))/Cv(d)*100, "%")
+print("Capacitat calorífica simulació", f"{Cv_sim:.2e}")
+print("Capacitat calorífica teorica",f"{Cv_teo:.2e}")
+print("Error relatiu", f"{np.abs(Cv_sim-Cv_teo)/(Cv_teo)*100:.2f} %")
+    
     
 
-    
-    
 
 
 
