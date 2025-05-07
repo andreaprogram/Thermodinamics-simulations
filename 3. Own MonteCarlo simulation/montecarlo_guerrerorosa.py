@@ -70,8 +70,8 @@ energies = np.array(energies)
 Cv_sim=(np.mean(energies**2)-(np.mean(energies))**2)/(kb*T**2) #calcul Cv simulacio
 cv_teo = C(d)/n #capacitat calorífica molar
 
-print("Capacitat calorífica simulació", f"{Cv_sim/n:.2e}", "J/K*mol")
-print("Capacitat calorífica teorica",f"{cv_teo:.2e}", "J/K*mol")
+print("Capacitat calorífica simulació", f"{Cv_sim/n:.3f}", "J/K*mol")
+print("Capacitat calorífica teorica",f"{cv_teo:.3f}", "J/K*mol")
 print("Error relatiu", f"{np.abs(Cv_sim/n-cv_teo)/(cv_teo)*100:.2f} %")
     
     
