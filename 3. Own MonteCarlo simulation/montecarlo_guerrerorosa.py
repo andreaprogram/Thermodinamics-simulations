@@ -14,7 +14,8 @@ N=3000 #nombre de mol.lecules
 T=293 #temperatura [K]
 kb=1.380649E-23 #constant de Boltzmann [J/K]
 m=6.646E-27 #massa de l'Heli [kg]
-
+Na=6.022E23
+n=N/Na
 
 def E(c): #funcio que calcula l'energia (cinetica), on c es un ARRAY
     return 0.5 * m *np.sum(c**2)
@@ -68,11 +69,11 @@ while pas<n_p:
     
 energies = np.array(energies) 
 Cv_sim=(np.mean(energies**2)-(np.mean(energies))**2)/(kb*T**2) #calcul Cv simulacio
-Cv_teo = C(d)
+cv_teo = C(d)/n #capacitat calorífica molar
 
-print("Capacitat calorífica simulació", f"{Cv_sim:.2e}")
-print("Capacitat calorífica teorica",f"{Cv_teo:.2e}")
-print("Error relatiu", f"{np.abs(Cv_sim-Cv_teo)/(Cv_teo)*100:.2f} %")
+print("Capacitat calorífica simulació", f"{Cv_sim/n:.2e}", "J/K*mol")
+print("Capacitat calorífica teorica",f"{cv_teo:.2e}", "J/K*mol")
+print("Error relatiu", f"{np.abs(Cv_sim/n-cv_teo)/(cv_teo)*100:.2f} %")
     
     
 
