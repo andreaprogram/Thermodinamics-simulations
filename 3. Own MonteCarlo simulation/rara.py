@@ -20,9 +20,6 @@ n_p = 10000*N #nombre de passos de la simulacio
 
 
 
-
-
-
 #DEMANAR LA DIMENSIO--------------------------------------------------------------
 print("Indiqueu la dimensio en que voleu el sistema (1, 2 o 3)")
 while True:
@@ -35,23 +32,29 @@ while True:
 
 
 
+#Alterarem les velocitats de les particules, doncs definim els parametres:
 v_rms=np.sqrt(d*kb*T/m) #agafem el maxim que sabemm de l'amplada de la distribucio, no podem agafar des de -infinit a +infinit a la practica
 delta= v_rms #variacio maxima en la velocitat
+
 
 #BUCLE QUE FA LA SIMULACIO---------------------------------------------------
 v = np.random.uniform(-v_rms, v_rms, size=(N, d)) #llista on s'emmagatzemmen les velocitats de les N particules en d dimensions, que segueix distribucio MB
 energies=[] #llista on s'emmagatzemmen les energies del sistema
-energies2=[]
-pas=0
+energies2=[] #llista on s'emmagatzemmen les energies al quadrat del sistema 
+pas=0 #variable pel recompte de passos
+
 while pas<n_p:
     i = np.random.randint(N) #numero de particula aleatori
     v_nova = v[i] + np.random.uniform(-delta, delta, size = (1,d)) #canviem la velocitat de manera aleatoria
     delta_E= 0.5 * m *(np.sum(v_nova**2)-np.sum(v[i]**2)) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
      
-    if delta_E<0 or np.random.uniform(0,1)<np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
+    if delta_E<0 or np.random.uniform(0,1) < np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
         v[i]=v_nova
 
-    if pas % 10*N==0 and pas>0:
+    #emmagatzem els valors d'energia cada 1000 execucions del bucle ja que no tots els valors son d'interes, per exemple, amb aixo descartem els 1000 primers
+    # i obtenim uns resultats mes acurats perque estem interessats en fer estadistica i per aixo necessitem un alt nombre de punts amb que treballar
+    
+    if pas % 10*N==0 and pas>0: 
         E=m*np.sum(v**2)/2
         energies.append(E)
         energies2.append(E**2)#es guarda la nova energia
