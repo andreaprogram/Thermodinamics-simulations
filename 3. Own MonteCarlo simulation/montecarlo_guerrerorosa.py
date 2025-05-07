@@ -55,7 +55,7 @@ while pas<n_p:
     v_nova = v[i] + np.random.uniform(-delta, delta, size = d) #canviem la velocitat de manera aleatoria
     delta_E= E(v_nova) - E(v[i]) #trobem la diferencia d'energia fent tan sols el canvi per la particula seleccionada (la resta s'eliminen en fer la diferencia)
      
-    if delta_E<0 or np.random.uniform(0,1) < np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
+    if delta_E<=0 or np.random.uniform(0,1) < np.exp(-delta_E/(kb*T)):  #REGLA DE METROPOLIS
         v[i]=v_nova
 
     #emmagatzem els valors d'energia cada 1000 execucions del bucle ja que no tots els valors son d'interes, per exemple, amb aixo descartem els 1000 primers
