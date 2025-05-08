@@ -253,25 +253,22 @@ while True:
         plt.ylabel('Pressió (Pa)')
         plt.show()
         
-        # Convertir las listas a arrays de numpy para usar con scikit-learn
-        temperatura_array = np.array(temperatura_sim).reshape(-1, 1)  # Reshape para que sea una columna
-        presion_array = np.array(pressio_sim)
+        # REGRESSIO LINEAL P = m * T + b------------------------------------------
+        temperatura_array = np.array(temperatura_sim).reshape(-1, 1) 
+        pressio_array = np.array(pressio_sim)
 
-# Crear el modelo de regresión lineal
-        modelo = LinearRegression()
+        model = LinearRegression()
 
-# Ajustar el modelo a los datos de temperatura y presión
-        modelo.fit(temperatura_array, presion_array)
+        model.fit(temperatura_array, pressio_array)
 
-# Obtener la pendiente, la intersección y el coeficiente de determinación R^2
-        pendiente = modelo.coef_[0]  # Pendiente de la recta
-        interseccion = modelo.intercept_  # Intersección con el eje Y
-        r2 = modelo.score(temperatura_array, presion_array)  # Coeficiente de determinación R^2
+        m = model.coef_[0] 
+        b = model.intercept_  
+        r2 = model.score(temperatura_array, pressio_array) 
 
-# Mostrar los resultados de la regresión
-        print(f"Pendiente de la recta: {pendiente:.2e}")
-        print(f"Intersección (presión en T=0): {interseccion:.2e}")
-        print(f"Coeficiente de determinación R^2: {r2:.2f}")
+
+        print(f"m =  {m:.2e}")
+        print(f"b =  {b:.2e}")
+        print(f"R^2 = {r2:.2f}")
         break
       
    
