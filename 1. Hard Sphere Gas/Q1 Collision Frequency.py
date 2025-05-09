@@ -150,7 +150,7 @@ while True:
     
     # Check for collisions
     hitlist = checkCollisions()
-
+    colisions += len(hitlist)
     # If any collisions took place, update momenta of the two atoms
     for ij in hitlist:
         i = ij[0]
@@ -190,8 +190,8 @@ while True:
         interchange(vi.mag, p[i].mag/mass)
         interchange(vj.mag, p[j].mag/mass)
 
-        colisions += 1
-      if colisions % 5000 == 0:    #cada 5000 colisions mirem el temps mig
+
+     if colisions % 5000 == 0:    #cada 5000 colisions mirem el temps mig
             print("Nombre de colisions:", colisions)
             print("Temps total:", temps_total)
             print("Tiemps mig entre colisions:", temps_total / colisions)
