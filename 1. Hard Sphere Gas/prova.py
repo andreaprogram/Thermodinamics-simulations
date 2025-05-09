@@ -223,9 +223,9 @@ for Ratom in R:
                 else: p[i].z =  -abs(p[i].z)
         
 
-
+r_array=np.array(R)
 plt.scatter(R, t_exp, label='Temps Simulació')
-plt.scatter(R, temps_teo(R), label='Temps Teòric', color="red")
+plt.scatter(r_array, temps_teo(r_array), label='Temps Teòric', color="red")
 plt.xlabel('r')
 plt.ylabel('Temps mitjà de col·lisions')
 plt.legend()
