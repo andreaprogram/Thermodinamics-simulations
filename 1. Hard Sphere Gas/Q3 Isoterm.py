@@ -249,6 +249,23 @@ while True:
         plt.xlabel('1/Volum (m^(-3))')
         plt.ylabel('Pressió (Pa)')
         plt.show()
+
+        # REGRESSIO LINEAL P = m * (1/V) + b------------------------------------------
+        inver_volum_array = np.array(inver_volum_sim).reshape(-1, 1) 
+        pressio_array = np.array(pressio_sim)
+
+        model = LinearRegression()
+
+        model.fit(inver_volum_array, pressio_array)
+
+        m = model.coef_[0] 
+        b = model.intercept_  
+        r2 = model.score(inver_volum_array, pressio_array) 
+
+
+        print(f"m =  {m:.2e}")
+        print(f"b =  {b:.2e}")
+        print(f"R^2 = {r2:.2f}")
         break
       
    
