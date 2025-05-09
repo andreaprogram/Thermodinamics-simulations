@@ -246,7 +246,7 @@ while True:
         plt.ylabel('Pressió (Pa)')
         plt.show()
 
-                plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
+        plt.plot(T_ideal, P(T_ideal), label='Gas ideal')
         plt.scatter(temperatura_sim, pressio_sim, label='Simulació', color="rebeccapurple", s=5)
         plt.legend()
         plt.xlabel('Temperatura (K)')
@@ -266,9 +266,9 @@ while True:
         r2 = model.score(temperatura_array, pressio_array) 
 
 
-        print(f"m =  {m:.2e}")
+        print(f"m =  {m:.2e}", "NK/V=", Natoms*k)
         print(f"b =  {b:.2e}")
-        print(f"R^2 = {r2:.2f}")
+        print(f"R^2 = {r2:.3f}")
         break
       
    
