@@ -265,7 +265,7 @@ while True:
 
         print(f"m =  {m:.2e}")
         print(f"b =  {b:.2e}")
-        print(f"R^2 = {r2:.2f}")
+        print(f"R^2 = {r2:.3f}")
         break
       
    
