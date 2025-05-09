@@ -27,7 +27,7 @@ Z = (np.sqrt(2)*cross_sec*(n**2)*v_avg)/2 # freqüència de col·lisions
 temps_teo = 1 / Z
 print("Temps teòric mig entre col·lisions", temps_teo)
 
-R = [ 0.01, 0.001, 0.0001, 0.00001]
+R = [ 0.04, 0.03, 0.02, 0.01]
 t_exp = []
 
 # AJUSTOS VISUALITZACIÓ----------------------------------------------------------
