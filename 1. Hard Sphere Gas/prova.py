@@ -224,7 +224,7 @@ for Ratom in R:
         
 
 r_array=np.array(R)
-plt.scatter(R, t_exp, label='Temps Simulació')
+plt.scatter(R, t_exp, label='Temps Simulació', color='blue')
 plt.scatter(r_array, temps_teo(r_array), label='Temps Teòric', color="red")
 plt.xlabel('r')
 plt.ylabel('Temps mitjà de col·lisions')
