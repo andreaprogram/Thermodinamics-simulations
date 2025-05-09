@@ -262,7 +262,7 @@ while True:
         b = model.intercept_  
         r2 = model.score(inver_volum_array, pressio_array) 
 
-
+        print(f"m =  {m:.2e}", "NKT=", Natoms*k*T)
         print(f"m =  {m:.2e}")
         print(f"b =  {b:.2e}")
         print(f"R^2 = {r2:.3f}")
