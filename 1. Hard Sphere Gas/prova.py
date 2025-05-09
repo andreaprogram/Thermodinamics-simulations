@@ -224,8 +224,8 @@ for Ratom in R:
         
 
 
-plt.scatter(R, t_exp, label='Simulació', label="Temps experimental")
-plt.scatter(R, temps_teo(R), label='Temps teòric', color="red")
+plt.scatter(R, t_exp, label='Temps Simulació')
+plt.scatter(R, temps_teo(R), label='Temps Teòric', color="red")
 plt.xlabel('r')
 plt.ylabel('Temps mitjà de col·lisions')
 plt.legend()
