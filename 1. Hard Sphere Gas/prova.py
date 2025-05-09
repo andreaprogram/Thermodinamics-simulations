@@ -23,9 +23,10 @@ cross_sec= 0.21E-9
 n = Natoms / (L**3)  # densitat numèrica
 v_avg = np.sqrt(8 * k * T / (np.pi * mass))  # velocitat mitjana
 
-Z = (np.sqrt(2)*cross_sec*(n**2)*v_avg)/2 # freqüència de col·lisions
-temps_teo = 1 / Z
-print("Temps teòric mig entre col·lisions", temps_teo)
+def temps_teo(r)
+  Z = (np.sqrt(2)*4*np.pi*r**2*(n**2)*v_avg)/2 # freqüència de col·lisions
+  return 1 / Z
+
 
 R = [ 0.04, 0.03, 0.02, 0.01]
 t_exp = []
@@ -49,6 +50,7 @@ animation.caption = s
 # 4 verticals (las vert)
 
 for Ratom in R:
+  print("Temps teòric mig entre col·lisions", temps_teo(Ratom))
     d = L/2+Ratom
     r = 0.005
     boxbottom = curve(color=gray, radius=r)
