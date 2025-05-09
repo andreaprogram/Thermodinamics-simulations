@@ -201,9 +201,10 @@ for Ratom in R:
                 print("Temps total:", temps_total)
                 print("Timps mig entre colisions:", temps_total / colisions)
                 print("Freqüència colisions:", colisions / temps_total)
+                t_exp.append(temps_total / colisions)
                 temps_total=0
                 colisions=0
-          
+                break
         
         for i in range(Natoms):
             loc = apos[i]
@@ -219,11 +220,6 @@ for Ratom in R:
                 if loc.z < 0: p[i].z =  abs(p[i].z)
                 else: p[i].z =  -abs(p[i].z)
         
-        if colisions>0:
-            t_exp.append(temps_total / colisions)
-        
-        if len(t_exp)==4:
-            break
 
 
 plt.scatter(R, t_exp, label='Simulació')
