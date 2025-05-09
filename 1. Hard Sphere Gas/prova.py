@@ -198,7 +198,7 @@ for Ratom in R:
             interchange(vj.mag, p[j].mag/mass)
 
 
-        if colisions % 5000 == 0:    #cada 5000 colisions mirem el temps mig
+        if colisions>=5000:    #cada 5000 colisions mirem el temps mig
                 print("Nombre de colisions:", colisions)
                 print("Temps total:", temps_total)
                 print("Timps mig entre colisions:", temps_total / colisions)
